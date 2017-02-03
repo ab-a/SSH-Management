@@ -8,7 +8,7 @@ jq -r ".keys[] | .username" db.json | while read user ; do
         ssh=$(jq -r ".keys[$i] | .key" db.json)
         if [[ $status = "1" ]]; then
                 homedir=$(getent passwd $user | cut -f6 -d:)
-                echo "Command : echo $ssh >> $homedir/.ssh/authorized_keys"
+                echo "Command : echo \"$ssh\" >> $homedir/.ssh/authorized_keys"
         fi
         (( i++ ))
 done
