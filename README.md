@@ -1,10 +1,10 @@
 # SSH Key Management
 
-[alert warning]### WARNING : WORK IN PROGRESS /!\ NOT READY FOR PRODUCTION[/alert]
+### :warning: WORK IN PROGRESS /!\ NOT READY FOR PRODUCTION :warning:
 
 ## Before starting
 
-[alert warning]#### Only use this on your local network ![/alert]
+#### :warning: Only use this on your local network ! :warning:
 
 This installation is in 3 parts, the `web user interface`, the `master` script and the `agent script`.
 
@@ -66,8 +66,3 @@ backup-server2.local.host:username
 
 ## The agent
 > The agent read the json and push all enabled keys.
-
-
-=======
-# SSH-Key-Management
-Manage your SSH Key efficiently
