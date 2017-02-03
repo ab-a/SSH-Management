@@ -3,15 +3,12 @@
 ### WARNING : WORK IN PROGRESS /!\ NOT READY FOR PRODUCTION ###
 
 i=0
-jq -r ".keys[] | .username" db.json | while read keys ; do
-        jq -r ".keys[$i] | .key" db.json
+jq -r ".keys[] | .username" db.json | while read user ; do
         status=$(jq -r ".keys[$i] | .enabled" db.json)
+        ssh=$(jq -r ".keys[$i] | .key" db.json)
         if [[ $status = "1" ]]; then
-                echo "ENABLED"
-                homedir=$(getent passwd $keys | cut -f6 -d:)
-                echo $homedir
+                homedir=$(getent passwd $user | cut -f6 -d:)
+                echo "Command : echo $ssh >> $homedir/.ssh/authorized_keys"
         fi
         (( i++ ))
-        echo $keys
-        echo $i
 done
