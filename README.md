@@ -11,6 +11,8 @@ With this program you'll be able to add your ssh key through a web-ui.
 ### Todo List : 
 - [x] Configuration file for the master
 - [x] Simple and fonctionnal web-ui
+- [x] Manage key through json
+- [x] Possibility to disable key
 - [ ] Pass the json through ssh pipe
 - [ ] Correct some behaviour in the agent (multi-add problem)
 - [ ] Finalize and daemonize the master and the agent
@@ -49,7 +51,7 @@ There is 3 values in the `keys` array :
 
 - __`"username"`__ - the username associated with the key
 - __`"key"`__ - the ssh-key itself
-- __`enabled`__ - boolean cast to int, if true (1) the key will be added
+- __`"enabled"`__ - boolean cast to int, if true (1) the key will be added
 
 Sample : 
 
