@@ -12,6 +12,7 @@ while read -r line; do
         echo "Name read from file - $userconf" && \
         echo "Host read from file - $hostconf" && \
         echo "Command : ssh $userconf@$hostconf"
+        # pipe file
         #scp -i ~/.ssh/id_rsa.pub ./db.json ${userconf}@${hostconf}:/home/ssh-keys/db.json
 done < "$file"
 

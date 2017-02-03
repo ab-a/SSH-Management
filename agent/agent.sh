@@ -2,6 +2,8 @@
 
 ### WARNING : WORK IN PROGRESS /!\ NOT READY FOR PRODUCTION ###
 
+## Replace db.json by stream 
+
 i=0
 jq -r ".keys[] | .username" db.json | while read user ; do
         status=$(jq -r ".keys[$i] | .enabled" db.json)

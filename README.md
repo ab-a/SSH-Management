@@ -4,9 +4,22 @@
 
 With this program you'll be able to add your ssh key through a web-ui. 
 
-The keys will be store in a json file and push to all server with a master daemon.
+> The keys will be store in a json file and push to all server with a master daemon.
+> A small agent deamon will read the json file and push keys for all users.
+> Work in progress : the json file will be send through ssh pipe to the distant servers so it will never be on other servers.
 
-There is a small agent deamon will read the json file and push keys for all users.
+### Todo List : 
+- [x] Configuration file for the master
+- [x] Simple and fonctionnal web-ui
+- [ ] Pass the json through ssh pipe
+- [ ] Correct some behaviour in the agent (multi-add problem)
+- [ ] Finalize and daemonize the master and the agent
+- [ ] Improve security
+- [ ] Create Ansible playbook for minimal initialization
+- [ ] Create simple install script
+- [ ] Add possibility to list all the key in the web-ui
+- [ ] Add possibility to delete the key
+- [ ] Clean code
 
 ## Before starting
 
@@ -19,26 +32,38 @@ Install the jq JSON Processor program :
 ```bash
 # apt-get install jq
 ```
-### Agent User 
+### Creation of distant agent User 
 
 * Create an user on all the host you want to push the ssh keys
-* Add his ssh key to authorized keys in order to push the json
+* Add his ssh key to authorized keys in order to push the json 
 
 For security you can chroot this user and restrict the right on the json database.
 
 In future I'll create an Ansible Playbook to do that easily.
 
-### Todo List : 
-- [x] Configuration file for the master
-- [x] Simple and fonctionnal web-ui
-- [ ] Correct some behaviour in the agent (multi-add problem)
-- [ ] Finalize and daemonize the master and the agent
-- [ ] Improve security
-- [ ] Create Ansible playbook for minimal initialization
-- [ ] Create simple install script
-- [ ] Add possibility to list all the key in the web-ui
-- [ ] Add possibility to delete the key
-- [ ] Clean code
+### The json
+
+The json databse is the file where are stored all key and user. 
+
+There is 3 values in the `keys` array : 
+
+- __`"username"`__ - the username associated with the key
+- __`"key"`__ - the ssh-key itself
+- __`enabled`__ - boolean cast to int, if true (1) the key will be added
+
+Sample : 
+
+```json
+{
+  "keys": [
+    {
+      "username": "user",
+      "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAYQC/bztdcLWS8IK8tDUEaZRp+T/Vlohmni0f5FMs/1I4lCy8XSM96twyVXBo4ATYBFj61ET0CIGAzW81xDsOkWv3oKDlRzurU5TVc49KQEIjwv5DbpB6g2HznmM5oo8diDE= user@home",
+      "enabled": 1
+    }
+  ]
+}
+```
 
 ## The Web-UI
 The web-ui allows you to push your SSH key into the json. 
@@ -51,11 +76,9 @@ Source : [https://www.sanwebe.com/2014/08/css-html-forms-designs](https://www.sa
 
 ## The master
 
-The master is here to push the json on all servers you've specified in hosts.conf. 
+The master is here to push the json on all servers you've specified in hosts.conf.
 
 ### The hosts.conf
-
-> The lines with `[Hostgroup Example]` are comments.
 
 The line have to be formated exactly like that :
 
@@ -86,9 +109,13 @@ backup-server1.local.host:username
 backup-server2.local.host:username
 ```
 
+> The lines with `[Hostgroup Example]` are comments.
+
 ## The agent
 
-> The agent read the json and push all enabled keys.
+The agent read the json and push all enabled keys.
+
+> It must be run by any other user who have the right to edit all `.ssh/auhorized_keys`.
 
 ## Examples
 
