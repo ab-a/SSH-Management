@@ -4,8 +4,8 @@
 
 With this program you'll be able to add your ssh key through a web-ui. 
 
-> The keys will be store in a json file and push to all server with a master daemon.
-> A small agent deamon will read the json file and push keys for all users.
+> The keys will be store in a json file.
+> A small agent deamon installed on all host will pull the json file and add keys for concerned users.
 > Work in progress : the json file will be send through ssh pipe to the distant servers so it will never be on other servers.
 
 ### Todo List : 
@@ -15,7 +15,7 @@ With this program you'll be able to add your ssh key through a web-ui.
 - [x] Possibility to disable key
 - [ ] Pass the json through ssh pipe
 - [ ] Correct some behaviour in the agent (multi-add problem)
-- [ ] Finalize and daemonize the master and the agent
+- [ ] Daemonize the master and the agent [:sunny:]
 - [ ] Improve security
 - [ ] Create Ansible playbook for minimal initialization
 - [ ] Create simple install script
@@ -27,23 +27,35 @@ With this program you'll be able to add your ssh key through a web-ui.
 
 #### :warning: WORK IN PROGRESS - NOT YET READY FOR PRODUCTION :warning:
 
-This installation is in 3 parts, the `web user interface`, the `master` script and the `agent` script.
-
 Install the jq JSON Processor program :
 
 ```bash
 # apt-get install jq
 ```
-### Creation of distant agent User 
 
-* Create an user on all the host you want to push the ssh keys
-* Add his ssh key to authorized keys in order to push the json 
+## Installation
 
-For security you can chroot this user and restrict the right on the json database.
+This installation is in 3 parts, the `web user interface`, the `master` script and the `agent` script.
 
-In future I'll create an Ansible Playbook to do that easily.
+### Master
 
-### The json
+Create an user who manage the SSH-Key and specify the home (here `/srv/ssh-management`) : 
+
+```bash
+# useradd -m -d /srv/ssh-management ssh-management
+```
+
+### Agent
+
+The agent will be run with the user root (or any user with root rights).
+
+Generate an SSH Key to connect to the master with the user root : 
+
+```bash
+# ssh-keygen -t rsa -b 4096
+```
+
+## The json
 
 The json databse is the file where are stored all key and user. 
 
@@ -80,6 +92,8 @@ Source : [https://www.sanwebe.com/2014/08/css-html-forms-designs](https://www.sa
 
 The master is here to push the json on all servers you've specified in hosts.conf.
 
+Every agent can ask the master if the agent have the right to connect to the master (properly set the ssh key).
+
 ### The hosts.conf
 
 The line have to be formated exactly like that :
@@ -115,9 +129,16 @@ backup-server2.local.host:username
 
 ## The agent
 
-The agent read the json and push all enabled keys.
+The agent will ask the master, pull and parse the json and set the keys.
 
 > It must be run by any other user who have the right to edit all `.ssh/auhorized_keys`.
+
+### Testing : 
+
+```bash
+$ chmod +x agent/agent.sh
+$ ./agent.sh
+```
 
 ## Examples
 
@@ -125,14 +146,30 @@ The agent read the json and push all enabled keys.
 
 With the agent and the db.json example file, with 2 keys enabled and 1 keys disabled : 
 
-```bash
-$ chmod +x agent/agent.sh
-$ ./agent.sh
-```
-
-Result : 
+Result like this (check the `db.json` file) : 
 
 ```bash
 Command : echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAYQC/bztdcLWS8IK8tDUEaZRp+T/Vlohmni0f5FMs/1I4lCy8XSM96twyVXBo4ATYBFj61ET0CIGAzW81xDsOkWv3oKDlRzurU5TVc49KQEIjwv5DbpB6g2HznmM5oo8diDE= user@home" >> /.ssh/authorized_keys
 Command : echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAYQC4hnZYAmfr9htSIAMRc1fan6se+mLdohiTIyC+CXQ4N2JHSjqaf8Fk9MLk8Y+l4Ziapfjj8cXIMZvbC+r63f+n/3MUwu8djKnaJdi1Kek5vCCXk6zVhPg2scdhqjnH0vs= user@laptop" >> /.ssh/authorized_keys
 ```
+
+## Global Summary
+
+```bash
+    +-------+
+    | WEBui |
+    +---+---+
+        |  [1]           
++-------|--------+                +-----------------+
+|       v        |        [2]     |                 |
+|     MASTER     |  <----------------    AGENT      |
+|       |        |                |        ^        |
++-------|--------+                +--------|--------+
+        |                                  |
+        +----------------------------------+
+                         [3]
+```
+
+- __`[1]`__ - adding of the ssh keys through the web-ui
+- __`[2]`__ - agent ask the master to get the json
+- __`[3]`__ - master send the json and the agent apply all modificationssh-key itself
