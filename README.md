@@ -192,6 +192,6 @@ Command : echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAYQC4hnZYAmfr9htSIAMRc1fan6se
                          [3]
 ```
 
-- __`[1]`__ - adding of the ssh keys through the web-ui
+- __`[1]`__ - adding the ssh keys to the json database through the web-ui
 - __`[2]`__ - agent ask the master to get the json
-- __`[3]`__ - master send the json and the agent apply all modificationssh-key itself
+- __`[3]`__ - master send the json and the agent apply all modification itself
