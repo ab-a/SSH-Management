@@ -31,9 +31,7 @@ Note : the json database is only store on the web-ui server.
 - [x] Simple and fonctionnal web-ui
 - [x] Manage key through json
 - [x] Possibility to disable key
-- [ ] Daemonize the master and the agent [:sunny:]
 - [ ] Improve security and clean code
-- [ ] Create Ansible playbook for minimal initialization and simple install script
 - [x] Add possibility to list all the key in the web-ui
 - [ ] Add possibility to delete the key
 ## Prerequisites
@@ -45,7 +43,9 @@ Note : the json database is only store on the web-ui server.
 Create an user who can manage the SSH-Key and specify the home (here `/srv/ssh-management`) and clone the repo : 
 ```bash
 # useradd -m -d /srv/ssh-management ssh-management
-# git clone https://github.com/ab-a/sshkey.git /srv/ssh-management
+# cd ~
+# git clone https://github.com/ab-a/sshkey.git 
+# cp -r sshkey/master/web-ui /srv/ssh-management
 ```
 #### Agent
 The agent will be run with the user root (or any user with root to have the right to edit all `.ssh/auhorized_keys`.).
