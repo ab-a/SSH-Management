@@ -19,7 +19,7 @@ With this program you'll be able to add your ssh key through a web-ui.
 - [ ] Improve security
 - [ ] Create Ansible playbook for minimal initialization
 - [ ] Create simple install script
-- [ ] Add possibility to list all the key in the web-ui
+- [x] Add possibility to list all the key in the web-ui
 - [ ] Add possibility to delete the key
 - [ ] Clean code
 
@@ -82,11 +82,19 @@ Sample :
 ## The Web-UI
 The web-ui allows you to push your SSH key into the json. 
 
+### Upload interface
+
 > For the moment you can just add the SSH Key and if you want to disable it you have to fill the correct user and key you want to disable.
 
 ![simple web-ui](http://image.prntscr.com/image/534723fa7a7642cc842ee6b3f37b8ab1.png)
 
 Source : [https://www.sanwebe.com/2014/08/css-html-forms-designs](https://www.sanwebe.com/2014/08/css-html-forms-designs)
+
+### Listing interface
+
+> Listing all the keys and specify status
+
+![simple web-ui](http://i.imgur.com/HMVcNRp.png)
 
 ## The master
 

@@ -1,0 +1,30 @@
+.component {
+    line-height: 1.5em;
+    margin: 0 auto;
+    padding: 2em 0 3em;
+    width: 90%;
+}
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 3em;
+    width: 100%;
+    background: #fff;
+}
+
+td,
+th {
+    padding: 0.75em 1.5em;
+    text-align: left;
+}
+
+th {
+    background-color: #454B49;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+
+tbody th {
+    background-color: #222C28;
+}
