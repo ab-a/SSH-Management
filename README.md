@@ -37,6 +37,8 @@ Install the jq JSON Processor program :
 
 This installation is in 3 parts, the `web user interface`, the `master` script and the `agent` script.
 
+At first, clone the repo in `/srv/ssh-management` (or any directory you want).
+
 ### Master
 
 Create an user who manage the SSH-Key and specify the home (here `/srv/ssh-management`) : 
@@ -54,6 +56,18 @@ Generate an SSH Key to connect to the master with the user root :
 ```bash
 # ssh-keygen -t rsa -b 4096
 ```
+
+### Nginx
+
+I made an Nginx configuration file (SSL and non-SSL). You have to set these variable : 
+
+- __`$hostname`__ - hostname (or ip address)
+- __`$root_directory`__ - path to your installation folder (with web-ui folder)
+
+If you use SSL :
+
+- __`$cert`__ - path to your certificate
+- __`$key`__ - path to your key
 
 ## The json
 
