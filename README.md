@@ -24,8 +24,11 @@ Note : the json database is only store on the web-ui server.
 - __`[1]`__ - adding the ssh keys to the json database through the web-ui
 - __`[2]`__ - agent ask the master to get the json
 - __`[3]`__ - master send the json and the agent apply all modification itself
+
 #### :warning: Only use this on your local network ! :warning:
+
 #### :warning: WORK IN PROGRESS - NOT YET READY FOR PRODUCTION :warning:
+
 ### Todo List : 
 - [x] Configuration file for the master
 - [x] Simple and fonctionnal web-ui
