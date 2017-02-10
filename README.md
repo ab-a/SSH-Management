@@ -36,7 +36,8 @@ Note : the json database is only store on the web-ui server.
 - [x] Possibility to disable key
 - [ ] Improve security and clean code
 - [x] Add possibility to list all the key in the web-ui
-- [ ] Add possibility to delete the key
+- [x] Add possibility to delete the key directly on the web-ui
+
 ## Prerequisites
 ```bash
 # apt-get install jq git php5-fpm nginx
