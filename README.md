@@ -36,7 +36,8 @@ Note : the json database is only store on the web-ui server.
 - [x] Possibility to disable key
 - [ ] Improve security and clean code
 - [x] Add possibility to list all the key in the web-ui
-- [ ] Add possibility to delete the key
+- [x] Add possibility to delete the key directly on the web-ui
+
 ## Prerequisites
 ```bash
 # apt-get install jq git php5-fpm nginx
@@ -60,7 +61,7 @@ The agent will ask the master, pull and parse the json and set the keys.
 ## The Web-UI
 The web-ui allows you to push your SSH key into the json. 
 #### Upload interface
-![simple web-ui](http://image.prntscr.com/image/534723fa7a7642cc842ee6b3f37b8ab1.png)
+![simple web-ui](http://i.imgur.com/Qv5rGgL.png)
 
 Source : [https://www.sanwebe.com/2014/08/css-html-forms-designs](https://www.sanwebe.com/2014/08/css-html-forms-designs)
 #### Listing interface
