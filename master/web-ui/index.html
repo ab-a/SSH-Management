@@ -1,35 +1,30 @@
-<!doctype html>
+<html>
 
-<html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
 
     <title>SSH Key Manager</title>
     <meta name="description" content="upload your sshkey">
     <meta name="author" content="aba">
     <link rel="stylesheet" href="css/style.css">
-<script type="text/javascript " src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript">
-$(document).ready(function() { 
-    $('input[type="checkbox"]').on('change', function() {        
-        $('input[type="checkbox"]').not(this).prop('checked', false);
-        });
-});    </script>
-  </head>
+    <script type="text/javascript " src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/checkbox.js"></script>
+</head>
 
-  <body>
+<body>
 
     <div class="form-style-6">
-      <h1>Upload your SSH Key - <a href="list.html">Key List</a></h1>
-      <form action="action.php">
-        <input type="text" name="username" placeholder="Your Username" />
-        <textarea name="key" placeholder="Your SSH Key"></textarea>
-        <input type="checkbox" name="status" value="enable" checked="checked">Enable the key</input>
-	<input type="checkbox" name="status" value="disable">Disable the key</input>
-        <input type="checkbox" name="status" value="delete">Delete the key<br><br></input>
-        <input type="submit" value="Send" />
-      </form>
+        <h1>Upload your SSH Key - <a href="list.html">Key List</a></h1>
+        <form action="action.php">
+            <input type="text" name="username" placeholder="Your Username" />
+            <textarea name="key" placeholder="Your SSH Key"></textarea>
+            <input type="checkbox" name="status" value="enable" checked="checked">Enable the key</input>
+            <input type="checkbox" name="status" value="disable">Disable the key</input>
+            <input type="checkbox" name="status" value="delete">Delete the key<br><br></input>
+            <input type="submit" value="Send" />
+        </form>
     </div>
 
-  </body>
+</body>
+
 </html>

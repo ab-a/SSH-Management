@@ -13,9 +13,7 @@ jq -r ".keys[] | .username" db.json | while read user ; do
                 mkdir -p $homedir/.ssh
                 if [ ! -f $homedir/.ssh/authorized_keys ]; then
                         touch $homedir/.ssh/authorized_keys
-                        chmod 700 $homedir/.ssh/authorized_keys
-                        cat $homedir/.ssh/id_rsa.pub >> $homedir/.ssh/authorized_keys
-                        chmod 400 $homedir/.ssh/authorized_keys
+                        chmod 600 $homedir/.ssh/authorized_keys
                         chmod 700 $homedir/.ssh/
                 fi
                 if [ ! -f $homedir/.ssh/config ]; then
