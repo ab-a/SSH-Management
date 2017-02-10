@@ -2,7 +2,20 @@
 
 function checkValue($json, $vUser, $vKey) {
     foreach($json['keys'] as $key => $value) {
-        if ($vUser == $value['username'] && $vKey == $value['key']) { return $key; }
+        if ($vUser == $value['username'] && $vKey == $value['key']) {
+            return $key;
+        }
+    }
+    return FALSE;
+}
+
+function searchEntry($json, $vUser, $vKey) {
+    $i = 0;
+    foreach($json['keys'] as $key => $value) {
+        if ($vUser == $value['username'] && $vKey == $value['key']) {
+            return $i;
+        }
+        $i++;
     }
     return FALSE;
 }
@@ -15,27 +28,33 @@ if(!array_key_exists("keys", $json)){$json["keys"] = [];}
 
 $vUser = $_GET["username"];
 $vKey = $_GET["key"];
+$vStatus = $_GET["status"];
 
 $status = false;
-if(@$_GET["status"] == "enabled"){
+
+if($vStatus == "enable"){
   $status = true;
 }
 
 $vValue = checkValue($json, $vUser, $vKey);
 
 if ($vValue !== FALSE) {
-    $json["keys"][$vValue]["enabled"] = (int)$status;
+    if ($vStatus == "delete") {
+        $i = searchEntry($json, $vUser, $vKey);
+        unset($json["keys"][$i]);
+    } else {
+        $json["keys"][$vValue]["enabled"] = (int)$status;
+    }
 } else {
     $obj = array(
-    'username'=>$vUser,
-    'key'=>$vKey,
-    'enabled'=>(int)$status,
+        'username'=>$vUser,
+        'key'=>$vKey,
+        'enabled'=>(int)$status,
     );
-$json["keys"][] = $obj;
+    $json["keys"][] = $obj;
 }
-
 $data = json_encode($json);
 file_put_contents('db.json',$data);
-Header("Location: upload.html");
+Header("Location: list.html");
 
 ?>
