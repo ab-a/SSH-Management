@@ -37,13 +37,12 @@ if($vStatus == "enable"){
 }
 
 $vValue = checkValue($json, $vUser, $vKey);
-print($vStatus .  (int)$vValue);
 if ($vValue !== FALSE && $vStatus == "delete") {
     $i = searchEntry($json, $vUser, $vKey);
     unset($json["keys"][$i]);
 } else if ($vValue !== FALSE) {
     $json["keys"][$vValue]["enabled"] = (int)$status;
-} else if ($vValue === FALSE && $vStatus == "enable") {
+} else if ($vValue == FALSE && $vStatus == "enable") {
     $obj = array(
         'username'=>$vUser,
         'key'=>$vKey,
