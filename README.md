@@ -61,7 +61,7 @@ The agent will ask the master, pull and parse the json and set the keys.
 ## The Web-UI
 The web-ui allows you to push your SSH key into the json. 
 #### Upload interface
-![simple web-ui](http://image.prntscr.com/image/534723fa7a7642cc842ee6b3f37b8ab1.png)
+![simple web-ui](http://i.imgur.com/Qv5rGgL.png)
 
 Source : [https://www.sanwebe.com/2014/08/css-html-forms-designs](https://www.sanwebe.com/2014/08/css-html-forms-designs)
 #### Listing interface
