@@ -24,7 +24,7 @@ $file = file_get_contents('db.json');
 $json = @json_decode($file, TRUE);
 
 if(!is_array($json)){ $json = []; }
-if(!array_key_exists("keys", $json)){$json["keys"] = [];}
+if(!array_key_exists("keys", $json)){$json["keys"] = ['SSH Key List'];}
 
 $vUser = $_GET["username"];
 $vKey = $_GET["key"];
@@ -35,13 +35,15 @@ $status = false;
 if($vStatus == "enable"){
   $status = true;
 }
+
 $vKey = str_replace(array("\n", "\r"), '', $vKey);
 $vValue = checkValue($json, $vUser, $vKey);
+
 if ($vValue !== FALSE && $vStatus == "delete") {
     $i = searchEntry($json, $vUser, $vKey);
     unset($json["keys"][$i]);
 } else if ($vValue !== FALSE) {
-    $json["keys"][$vValue]["enabled"] = (int)$status;
+   $json["keys"][$vValue]["enabled"] = (int)$status;
 } else if ($vValue == FALSE && $vStatus == "enable") {
     $obj = array(
         'username'=>$vUser,
@@ -50,6 +52,7 @@ if ($vValue !== FALSE && $vStatus == "delete") {
     );
     $json["keys"][] = $obj;
 }
+
 $data = json_encode($json, JSON_PRETTY_PRINT);
 file_put_contents('db.json',$data);
 Header("Location: index.html");

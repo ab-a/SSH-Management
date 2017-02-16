@@ -18,11 +18,13 @@ jq -r ".keys[] | .username" db.json | while read user ; do
                 fi
                 if [ ! -f $homedir/.ssh/config ]; then
                         touch $homedir/.ssh/config
-                        echo "StrictHostKeyChecking no" > $homedir/.ssh/config                        
+                        echo "StrictHostKeyChecking no" > $homedir/.ssh/config
                         chmod 644 $homedir/.ssh/config
                 fi
-                homedir=$(getent passwd $user | cut -f6 -d:)
-                echo $ssh >> $homedir/.ssh/authorized_keys
+		if [ "$i" -gt 0 ]
+	                homedir=$(getent passwd $user | cut -f6 -d:)
+        	        echo $ssh >> $homedir/.ssh/authorized_keys
+		fi
         fi
         (( i++ ))
 done
