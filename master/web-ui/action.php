@@ -52,6 +52,6 @@ if ($vValue !== FALSE && $vStatus == "delete") {
 }
 $data = json_encode($json, JSON_PRETTY_PRINT);
 file_put_contents('db.json',$data);
-Header("Location: list.html");
+Header("Location: index.html");
 
 ?>
