@@ -25,16 +25,14 @@ Note : the json database is only store on the web-ui server.
 - __`[2]`__ - agent ask the master to get the json
 - __`[3]`__ - master send the json and the agent apply all modification itself
 
-#### :warning: Only use this on your local network ! :warning:
-
-#### :warning: WORK IN PROGRESS - NOT YET READY FOR PRODUCTION :warning:
+#### :warning: Using only on your local network ! :warning:
 
 ### Todo List : 
 - [x] Configuration file for the master
 - [x] Simple and fonctionnal web-ui
 - [x] Manage key through json
 - [x] Possibility to disable key
-- [ ] Improve security and clean code
+- [x] Improve security and clean code
 - [x] Add possibility to list all the key in the web-ui
 - [x] Add possibility to delete the key directly on the web-ui
 

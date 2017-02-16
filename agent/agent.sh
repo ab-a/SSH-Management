@@ -1,5 +1,4 @@
 #!/bin/bash
-# Work in progress : not ready for production
 
 i=0
 master=master.hostname.
