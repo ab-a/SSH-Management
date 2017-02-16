@@ -41,7 +41,7 @@ $vValue = checkValue($json, $vUser, $vKey);
 
 if ($vValue !== FALSE && $vStatus == "delete") {
     $i = searchEntry($json, $vUser, $vKey);
-    unset($json["keys"][$i]);
+    array_splice($json["keys"], $i, 1);
 } else if ($vValue !== FALSE) {
    $json["keys"][$vValue]["enabled"] = (int)$status;
 } else if ($vValue == FALSE && $vStatus == "enable") {
