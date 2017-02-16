@@ -29,7 +29,6 @@ if(!array_key_exists("keys", $json)){$json["keys"] = ['SSH Key List'];}
 $vUser = $_GET["username"];
 $vKey = $_GET["key"];
 $vStatus = $_GET["status"];
-
 $status = false;
 
 if($vStatus == "enable"){
@@ -54,6 +53,7 @@ if ($vValue !== FALSE && $vStatus == "delete") {
 }
 
 $data = json_encode($json, JSON_PRETTY_PRINT);
+
 file_put_contents('db.json',$data);
 Header("Location: index.html");
 
