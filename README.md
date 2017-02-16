@@ -60,9 +60,10 @@ Generate an SSH Key and push it to the master server :
 The agent will ask the master, pull and parse the json and set the keys.
 ## The Web-UI
 The web-ui allows you to push your SSH key into the json. 
-#### Upload interface
-![simple web-ui](http://i.imgur.com/Qv5rGgL.png)
+
+--------------------------------
+![simple web-ui](http://i.imgur.com/2Twj9WN.png)
+
+--------------------------------
 
 Source : [https://www.sanwebe.com/2014/08/css-html-forms-designs](https://www.sanwebe.com/2014/08/css-html-forms-designs)
-#### Listing interface
-![simple web-ui](http://i.imgur.com/HMVcNRp.png)
