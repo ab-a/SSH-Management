@@ -1,1 +1,9 @@
-{"keys":[{"username":"root","key":"root","enabled":1},{"username":"admin","key":"admin","enabled":0},{"username":"user1","key":"user1","enabled":1},{"username":"user2","key":"user2","enabled":1},{"username":"user3","key":"user3","enabled":0},{"username":"sql","key":"sql","enabled":1}]}
+{
+    "keys": [
+        {
+            "username": "test",
+            "key": "test",
+            "enabled": 1
+        }
+    ]
+}

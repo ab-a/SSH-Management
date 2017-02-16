@@ -35,7 +35,7 @@ $status = false;
 if($vStatus == "enable"){
   $status = true;
 }
-
+$vKey = str_replace(array("\n", "\r"), '', $vKey);
 $vValue = checkValue($json, $vUser, $vKey);
 if ($vValue !== FALSE && $vStatus == "delete") {
     $i = searchEntry($json, $vUser, $vKey);
@@ -50,7 +50,8 @@ if ($vValue !== FALSE && $vStatus == "delete") {
     );
     $json["keys"][] = $obj;
 }
-$data = json_encode($json);
+//$json = array_map('utf8_encode', $json	);
+$data = json_encode($json, JSON_PRETTY_PRINT);
 file_put_contents('db.json',$data);
 Header("Location: list.html");
 
