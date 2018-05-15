@@ -1,3 +1,5 @@
+[![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square)](LICENSE)
+
 # SSH Key Management
 With this program you'll be able to add your ssh key through a web-ui.
 
