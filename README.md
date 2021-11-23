@@ -31,7 +31,7 @@ Note : the json database is only store on the web-ui server.
 - __`[2]`__ - agent ask the master to get the json
 - __`[3]`__ - master send the json and the agent apply all modification itself
 
-#### :warning: Using only on your local network ! :warning:
+#### :warning: not for production, use at your own risk :warning:
 
 ### Todo List : 
 - [x] Configuration file for the master
