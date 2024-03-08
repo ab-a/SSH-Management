@@ -1,7 +1,7 @@
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 [![made-with-bash](https://img.shields.io/badge/Made%20with-Bash-1f425f.svg)](https://www.gnu.org/software/bash/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)]()
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)]()
 [![Prod](https://img.shields.io/badge/Prod%3F-Unsecure-red.svg)]()
 
 # SSH Key Management
